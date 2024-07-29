@@ -25,6 +25,13 @@ document.getElementById('videoForm').addEventListener('submit', function(event) 
             resultsDiv.innerHTML = `<p style="color: red;">${data.error}</p>`;
         } else {
             resultsDiv.innerHTML = `
+                <div class="stat"><strong>Title:</strong> ${data.title}</div>
+                <div class="stat"><strong>Description:</strong> ${data.description}</div>
+                <div class="stat"><strong>Channel Title:</strong> ${data.channelTitle}</div>
+                <div class="stat"><strong>Published At:</strong> ${data.publishedAt}</div>
+                <div class="stat"><strong>Category ID:</strong> ${data.categoryId}</div>
+                <div class="stat"><strong>Tags:</strong> ${data.tags.join(', ')}</div>
+                <div class="stat"><strong>Duration:</strong> ${data.duration}</div>
                 <div class="stat"><strong>View Count:</strong> ${data.viewCount}</div>
                 <div class="stat"><strong>Like Count:</strong> ${data.likeCount}</div>
                 <div class="stat"><strong>Dislike Count:</strong> ${data.dislikeCount}</div>
