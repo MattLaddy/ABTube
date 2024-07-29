@@ -1,0 +1,39 @@
+from flask import Flask, request, jsonify, render_template
+from dotenv import load_dotenv
+import os
+import requests
+
+app = Flask(__name__)
+load_dotenv()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/get_video_stats', methods=['POST'])
+def get_video_stats():
+    data = request.json
+    video_url = data.get('videoUrl')
+    if not video_url:
+        return jsonify({'error': 'No video URL provided'}), 400
+
+    video_id = video_url.split('v=')[-1].split('&')[0]
+    api_key = os.getenv('YOUTUBE_API_KEY')
+    url = f'https://www.googleapis.com/youtube/v3/videos?part=statistics&id={video_id}&key={api_key}'
+
+    response = requests.get(url)
+    data = response.json()
+
+    if 'items' in data and len(data['items']) > 0:
+        stats = data['items'][0]['statistics']
+        return jsonify({
+            'viewCount': stats.get('viewCount', 'N/A'),
+            'likeCount': stats.get('likeCount', 'N/A'),
+            'dislikeCount': stats.get('dislikeCount', 'N/A'),
+            'commentCount': stats.get('commentCount', 'N/A')
+        })
+    else:
+        return jsonify({'error': 'Video not found or an error occurred'}), 404
+
+if __name__ == '__main__':
+    app.run(debug=True)
