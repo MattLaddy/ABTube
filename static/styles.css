@@ -4,16 +4,47 @@ body {
     padding: 20px;
     max-width: 600px;
     margin: auto;
+    background: linear-gradient(to right, #ffecd2, #fcb69f); /* Gradient background */
+    color: #333; /* Text color */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
+
 input, button {
     padding: 10px;
     margin: 5px 0;
     width: 100%;
     box-sizing: border-box;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    background: #fff; /* White background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition */
 }
+
+input:focus, button:focus {
+    outline: none; /* Remove default outline */
+    border-color: #fcb69f; /* Focus border color */
+}
+
+button {
+    background: #fcb69f; /* Button background color */
+    color: #fff; /* Button text color */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+button:hover {
+    background: #f78c6b; /* Darker button background on hover */
+}
+
 #results {
     margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent background */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
+
 .stat {
     margin: 10px 0;
 }
